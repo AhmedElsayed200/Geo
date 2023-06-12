@@ -1,0 +1,66 @@
+Theoretical Questions
+
+Question 1: You have to pass some information deep down the component tree (let's say, 5 components deep). 
+How would you do that?
+
+Answer:
+The approach for passing information deep down the component tree depends on the specific requirements and 
+complexity of the application. If the information is only needed by the deepest component or a few components, 
+the Context API would be a suitable choice. By utilizing the useContext hook, I can create a context object at 
+the top level and provide access to the information for any nested component without the need to pass it explicitly 
+through props.
+On the other hand, if the information needs to be accessed by all five components, it may be more appropriate 
+to pass them as props to each component. This approach avoids unnecessary complexity introduced by the Context 
+API, which is better suited for scenarios where the information is selectively consumed by a subset of components.
+
+
+Question 2: There is a useEffect hook that uses many external variables. Write a few pros and cons for listing all 
+of those variables in the dependency list (there's no good or bad answer here, just talk about your thinking).
+
+Answer:
+Pros:
+1. By listing all the variables in the dependency list, the effect executes when intended, 
+ensuring that it reacts appropriately to changes in those dependencies (Precise triggering).
+2. Control and predictability: Explicitly specifying the dependencies provides better control and 
+predictability over when the effect should run.
+
+Cons:
+1. Performance impact: If the listed variables change frequently, the effect will be triggered frequently as well, 
+potentially leading to performance degradation. Care should be taken when dealing with highly dynamic dependencies.
+2. Maintenance overhead: Adding or removing dependencies requires updating the dependency list, which can be error-prone 
+and time-consuming. Failure to properly maintain the list can result in incorrect behavior or missed updates.
+3. Code readability: Listing a large number of dependencies can make the code harder to read and comprehend, 
+particularly when dealing with complex or lengthy dependency lists.
+
+------------------------------------Please Read the Below------------------------------------
+I have meticulously documented all the procedures and steps I took to successfully complete the technical assignment. 
+In addition, I have identified and addressed several problems in the implementation. 
+Here is a summary of the issues I encountered during the process:
+1.	Setting up ESLint and Prettier: I configured the linting and code formatting rules to ensure consistent code quality.
+2.	Problems with prior implementation:
+•	Incorrect offset calculation during scrolling and fetching new materials, resulting in 
+    re-fetching the last product and causing key duplication issues in the map. I fixed this 
+    issue by adjusting the offset calculation to multiply the page by 12 instead of 11.
+•	Lack of prevention mechanism when reaching the end of available materials, resulting in 
+    unnecessary API requests. To address this, I implemented a condition to disable API requests 
+    when all materials have been fetched.
+•	Uncontrolled consecutive API requests when rapidly reaching the bottom of the page. To mitigate this issue, 
+    I implemented a debouncing mechanism to introduce a delay between consecutive requests.
+•	Insufficient error handling and loading state management in the API requests, which I resolved by using the 
+    Axios library and implementing a custom hook called useFetch. This hook can handle errors and manage loading 
+    states for fetching data from any endpoint with various parameters.
+•	Incorrect PropTypes specification in the MaterialList component, specifically for the creator field. I updated 
+    the PropTypes to ensure accurate type checking.
+3.	Pagination implementation: I transformed the home page from infinite scrolling to a paginated approach, 
+    incorporating two buttons for navigation.
+4.	Project structure: I organized the project into separate folders, such as components, data (for persisting global 
+    variables), hooks (for custom hooks), and utils (for pure functions).
+5.	Custom parsing of content: During the development of the material description page, I discovered that the description 
+    section contained poorly formatted content. To address this, I manually implemented a function called 
+    parseContent to handle the parsing of data and present it as DOM elements.
+6.	Design considerations: While the design of the application is simple and not overly fancy, it is responsive 
+    and compatible with various screen sizes. The focus was on meeting the requirements of the task rather than 
+    elaborate visual aesthetics.
+7.	Adherence to SOLID principles: Throughout the development process, I followed the SOLID principles to ensure 
+    code maintainability, extensibility, and overall software design quality.
+
